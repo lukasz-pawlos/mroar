@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import csv
  
 import os
 import random
@@ -164,3 +165,29 @@ print(f"Winter Day Accuracy: {winter_day_accuracy}")
 print(f"Winter Night Accuracy: {winter_night_accuracy}")
 print(f"Spring Day Accuracy: {spring_day_accuracy}")
 print(f"Spring Night Accuracy: {spring_night_accuracy}")
+
+data = [
+    ("Autumn", autumn_accuracy),
+    ("Winter", winter_accuracy),
+    ("Spring", spring_accuracy),
+    ("Autumn Day", autumn_day_accuracy),
+    ("Autumn Night", autumn_night_accuracy),
+    ("Winter Day", winter_day_accuracy),
+    ("Winter Night", winter_night_accuracy),
+    ("Spring Day", spring_day_accuracy),
+    ("Spring Night", spring_night_accuracy),
+]
+
+csv_file_path = "accuracy_data.csv"
+
+# Write data to the CSV file
+with open(csv_file_path, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    
+    # Write headers
+    writer.writerow(["PORA DNIA I ROKU", "DOKŁADNOSC"])
+    
+    # Write data
+    writer.writerows(data)
+
+print(f"Data has been saved to {csv_file_path}")
